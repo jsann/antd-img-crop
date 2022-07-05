@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useMemo, useRef, forwardRef } from 'react';
-import AntModal from 'antd/es/modal';
-import AntUpload from 'antd/es/upload';
-import LocaleReceiver from 'antd/es/locale-provider/LocaleReceiver';
+import AntModal from 'antd/lib/modal';
+import AntUpload from 'antd/lib/upload';
+import LocaleReceiver from 'antd/lib/locale-provider/LocaleReceiver';
 import type Cropper from 'react-easy-crop';
 import type { UploadProps } from 'antd';
 import type { RcFile } from 'antd/lib/upload';

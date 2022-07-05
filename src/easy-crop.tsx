@@ -7,7 +7,7 @@ import React, {
   memo,
   MutableRefObject,
 } from 'react';
-import AntSlider from 'antd/es/slider';
+import AntSlider from 'antd/lib/slider';
 import Cropper from 'react-easy-crop';
 import type { Dispatch, SetStateAction, ForwardedRef } from 'react';
 import type { Point, Size, Area } from 'react-easy-crop/types';

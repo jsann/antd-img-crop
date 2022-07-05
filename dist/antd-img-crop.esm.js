@@ -11,10 +11,10 @@ function __$styleInject(css) {
 }
 
 import React, { forwardRef, useState, useRef, useCallback, useImperativeHandle, memo, useMemo } from 'react';
-import AntModal from 'antd/es/modal';
-import AntUpload from 'antd/es/upload';
-import LocaleReceiver from 'antd/es/locale-provider/LocaleReceiver';
-import AntSlider from 'antd/es/slider';
+import AntModal from 'antd/lib/modal';
+import AntUpload from 'antd/lib/upload';
+import LocaleReceiver from 'antd/lib/locale-provider/LocaleReceiver';
+import AntSlider from 'antd/lib/slider';
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
