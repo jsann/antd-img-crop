@@ -9,9 +9,10 @@ const input = 'src/img-crop.tsx';
 const exports = 'auto';
 const deps = [
   // ...Object.keys(pkg.dependencies),
-  ...Object.keys(pkg.peerDependencies),
+  // ...Object.keys(pkg.peerDependencies),
 ];
-const external = (id) => deps.includes(id) || id.startsWith('antd');
+const external = (id) =>
+  deps.includes(id) || id.startsWith('antd') || id === 'react' || id === 'react-dom';
 const plugins = (isESM) => [
   commonjs(),
   resolve(),
