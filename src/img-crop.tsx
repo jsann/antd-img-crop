@@ -1,7 +1,6 @@
 import React, { useState, useCallback, useMemo, useRef, forwardRef } from 'react';
-import AntModal from 'antd/lib/modal';
-import AntUpload from 'antd/lib/upload';
-import LocaleReceiver from 'antd/lib/locale-provider/LocaleReceiver';
+import { Modal, Upload } from 'antd';
+// import LocaleReceiver from 'antd/lib/locale-provider/LocaleReceiver';
 import type Cropper from 'react-easy-crop';
 import type { UploadProps } from 'antd';
 import type { RcFile } from 'antd/lib/upload';
@@ -207,9 +206,9 @@ const ImgCrop = forwardRef<Cropper, ImgCropProps>((props, ref) => {
           return rejectRef.current(new Error('beforeUpload return false'));
         }
 
-        delete newFile[AntUpload.LIST_IGNORE];
-        if (result === AntUpload.LIST_IGNORE) {
-          Object.defineProperty(newFile, AntUpload.LIST_IGNORE, {
+        delete newFile[Upload.LIST_IGNORE];
+        if (result === Upload.LIST_IGNORE) {
+          Object.defineProperty(newFile, Upload.LIST_IGNORE, {
             value: true,
             configurable: true,
           });
@@ -229,7 +228,7 @@ const ImgCrop = forwardRef<Cropper, ImgCropProps>((props, ref) => {
     <>
       {uploadComponent}
       {image && (
-        <AntModal
+        <Modal
           visible={true}
           wrapClassName={`${PREFIX}-modal`}
           title={titleOfModal}
@@ -252,18 +251,20 @@ const ImgCrop = forwardRef<Cropper, ImgCropProps>((props, ref) => {
             maxZoom={maxZoom}
             cropperProps={cropperProps}
           />
-        </AntModal>
+        </Modal>
       )}
     </>
   );
 
   if (modalTitle) return getComponent(modalTitle);
 
-  return (
-    <LocaleReceiver>
-      {(locale, code) => getComponent(code === 'zh-cn' ? '编辑图片' : 'Edit image')}
-    </LocaleReceiver>
-  );
+  // return (
+  //   <LocaleReceiver>
+  //     {(locale, code) => getComponent(code === 'zh-cn' ? '编辑图片' : 'Edit image')}
+  //   </LocaleReceiver>
+  // );
+
+  return getComponent('编辑图片');
 });
 
 export default ImgCrop;

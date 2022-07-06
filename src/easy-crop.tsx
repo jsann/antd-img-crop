@@ -7,7 +7,7 @@ import React, {
   memo,
   MutableRefObject,
 } from 'react';
-import AntSlider from 'antd/lib/slider';
+import { Slider } from 'antd';
 import Cropper from 'react-easy-crop';
 import type { Dispatch, SetStateAction, ForwardedRef } from 'react';
 import type { Point, Size, Area } from 'react-easy-crop/types';
@@ -121,7 +121,7 @@ const EasyCrop = forwardRef<EasyCropHandle, EasyCropProps>((props, ref) => {
           >
             －
           </button>
-          <AntSlider
+          <Slider
             min={minZoom}
             max={maxZoom}
             step={ZOOM_STEP}
@@ -144,7 +144,7 @@ const EasyCrop = forwardRef<EasyCropHandle, EasyCropProps>((props, ref) => {
           >
             ↺
           </button>
-          <AntSlider
+          <Slider
             min={MIN_ROTATE}
             max={MAX_ROTATE}
             step={ROTATE_STEP}

@@ -11,10 +11,7 @@ function __$styleInject(css) {
 }
 
 import React, { forwardRef, useState, useRef, useCallback, useImperativeHandle, memo, useMemo } from 'react';
-import AntModal from 'antd/lib/modal';
-import AntUpload from 'antd/lib/upload';
-import LocaleReceiver from 'antd/lib/locale-provider/LocaleReceiver';
-import AntSlider from 'antd/lib/slider';
+import { Slider, Modal, Upload } from 'antd';
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -1562,11 +1559,11 @@ var EasyCrop = forwardRef(function (props, ref) {
         React.createElement(Cropper$1, __assign$1({}, cropperProps, { ref: cropperRef, image: image, crop: crop, cropSize: cropSize, onCropChange: onCropChange, aspect: aspect, cropShape: shape, showGrid: grid, zoomWithScroll: zoom, zoom: zoomVal, rotation: rotateVal, onZoomChange: setZoomVal, onRotationChange: setRotateVal, minZoom: minZoom, maxZoom: maxZoom, onMediaLoaded: onMediaLoaded, onCropComplete: onCropComplete, classes: { containerClassName: "".concat(PREFIX, "-container"), mediaClassName: "".concat(PREFIX, "-media") } })),
         zoom && (React.createElement("section", { className: "".concat(PREFIX, "-control ").concat(PREFIX, "-control-zoom") },
             React.createElement("button", { onClick: function () { return setZoomVal(zoomVal - ZOOM_STEP); }, disabled: zoomVal - ZOOM_STEP < minZoom }, "\uFF0D"),
-            React.createElement(AntSlider, { min: minZoom, max: maxZoom, step: ZOOM_STEP, value: zoomVal, onChange: setZoomVal }),
+            React.createElement(Slider, { min: minZoom, max: maxZoom, step: ZOOM_STEP, value: zoomVal, onChange: setZoomVal }),
             React.createElement("button", { onClick: function () { return setZoomVal(zoomVal + ZOOM_STEP); }, disabled: zoomVal + ZOOM_STEP > maxZoom }, "\uFF0B"))),
         rotate && (React.createElement("section", { className: "".concat(PREFIX, "-control ").concat(PREFIX, "-control-rotate") },
             React.createElement("button", { onClick: function () { return setRotateVal(rotateVal - ROTATE_STEP); }, disabled: rotateVal === MIN_ROTATE }, "\u21BA"),
-            React.createElement(AntSlider, { min: MIN_ROTATE, max: MAX_ROTATE, step: ROTATE_STEP, value: rotateVal, onChange: setRotateVal }),
+            React.createElement(Slider, { min: MIN_ROTATE, max: MAX_ROTATE, step: ROTATE_STEP, value: rotateVal, onChange: setRotateVal }),
             React.createElement("button", { onClick: function () { return setRotateVal(rotateVal + ROTATE_STEP); }, disabled: rotateVal === MAX_ROTATE }, "\u21BB")))));
 });
 var EasyCrop$1 = memo(EasyCrop);
@@ -1719,9 +1716,9 @@ var ImgCrop = forwardRef(function (props, ref) {
                             if (result === false) {
                                 return [2 /*return*/, rejectRef.current(new Error('beforeUpload return false'))];
                             }
-                            delete newFile[AntUpload.LIST_IGNORE];
-                            if (result === AntUpload.LIST_IGNORE) {
-                                Object.defineProperty(newFile, AntUpload.LIST_IGNORE, {
+                            delete newFile[Upload.LIST_IGNORE];
+                            if (result === Upload.LIST_IGNORE) {
+                                Object.defineProperty(newFile, Upload.LIST_IGNORE, {
                                     value: true,
                                     configurable: true
                                 });
@@ -1739,11 +1736,16 @@ var ImgCrop = forwardRef(function (props, ref) {
     }); }, [fillColor, quality, rotate]);
     var getComponent = function (titleOfModal) { return (React.createElement(React.Fragment, null,
         uploadComponent,
-        image && (React.createElement(AntModal, __assign$1({ visible: true, wrapClassName: "".concat(PREFIX, "-modal"), title: titleOfModal, onOk: onOk, onCancel: onCancel, maskClosable: false, destroyOnClose: true }, modalProps),
+        image && (React.createElement(Modal, __assign$1({ visible: true, wrapClassName: "".concat(PREFIX, "-modal"), title: titleOfModal, onOk: onOk, onCancel: onCancel, maskClosable: false, destroyOnClose: true }, modalProps),
             React.createElement(EasyCrop$1, { ref: easyCropRef, cropperRef: ref, image: image, aspect: aspect, shape: shape, grid: grid, zoom: zoom, rotate: rotate, minZoom: minZoom, maxZoom: maxZoom, cropperProps: cropperProps }))))); };
     if (modalTitle)
         return getComponent(modalTitle);
-    return (React.createElement(LocaleReceiver, null, function (locale, code) { return getComponent(code === 'zh-cn' ? '编辑图片' : 'Edit image'); }));
+    // return (
+    //   <LocaleReceiver>
+    //     {(locale, code) => getComponent(code === 'zh-cn' ? '编辑图片' : 'Edit image')}
+    //   </LocaleReceiver>
+    // );
+    return getComponent('编辑图片');
 });
 
 export { ImgCrop as default };

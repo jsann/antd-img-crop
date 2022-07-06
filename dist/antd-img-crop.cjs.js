@@ -15,18 +15,11 @@ function __$styleInject(css) {
 }
 
 var React = require('react');
-var AntModal = require('antd/lib/modal');
-var AntUpload = require('antd/lib/upload');
-var LocaleReceiver = require('antd/lib/locale-provider/LocaleReceiver');
-var AntSlider = require('antd/lib/slider');
+var antd = require('antd');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
-var AntModal__default = /*#__PURE__*/_interopDefaultLegacy(AntModal);
-var AntUpload__default = /*#__PURE__*/_interopDefaultLegacy(AntUpload);
-var LocaleReceiver__default = /*#__PURE__*/_interopDefaultLegacy(LocaleReceiver);
-var AntSlider__default = /*#__PURE__*/_interopDefaultLegacy(AntSlider);
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -1574,11 +1567,11 @@ var EasyCrop = React.forwardRef(function (props, ref) {
         React__default["default"].createElement(Cropper$1, __assign$1({}, cropperProps, { ref: cropperRef, image: image, crop: crop, cropSize: cropSize, onCropChange: onCropChange, aspect: aspect, cropShape: shape, showGrid: grid, zoomWithScroll: zoom, zoom: zoomVal, rotation: rotateVal, onZoomChange: setZoomVal, onRotationChange: setRotateVal, minZoom: minZoom, maxZoom: maxZoom, onMediaLoaded: onMediaLoaded, onCropComplete: onCropComplete, classes: { containerClassName: "".concat(PREFIX, "-container"), mediaClassName: "".concat(PREFIX, "-media") } })),
         zoom && (React__default["default"].createElement("section", { className: "".concat(PREFIX, "-control ").concat(PREFIX, "-control-zoom") },
             React__default["default"].createElement("button", { onClick: function () { return setZoomVal(zoomVal - ZOOM_STEP); }, disabled: zoomVal - ZOOM_STEP < minZoom }, "\uFF0D"),
-            React__default["default"].createElement(AntSlider__default["default"], { min: minZoom, max: maxZoom, step: ZOOM_STEP, value: zoomVal, onChange: setZoomVal }),
+            React__default["default"].createElement(antd.Slider, { min: minZoom, max: maxZoom, step: ZOOM_STEP, value: zoomVal, onChange: setZoomVal }),
             React__default["default"].createElement("button", { onClick: function () { return setZoomVal(zoomVal + ZOOM_STEP); }, disabled: zoomVal + ZOOM_STEP > maxZoom }, "\uFF0B"))),
         rotate && (React__default["default"].createElement("section", { className: "".concat(PREFIX, "-control ").concat(PREFIX, "-control-rotate") },
             React__default["default"].createElement("button", { onClick: function () { return setRotateVal(rotateVal - ROTATE_STEP); }, disabled: rotateVal === MIN_ROTATE }, "\u21BA"),
-            React__default["default"].createElement(AntSlider__default["default"], { min: MIN_ROTATE, max: MAX_ROTATE, step: ROTATE_STEP, value: rotateVal, onChange: setRotateVal }),
+            React__default["default"].createElement(antd.Slider, { min: MIN_ROTATE, max: MAX_ROTATE, step: ROTATE_STEP, value: rotateVal, onChange: setRotateVal }),
             React__default["default"].createElement("button", { onClick: function () { return setRotateVal(rotateVal + ROTATE_STEP); }, disabled: rotateVal === MAX_ROTATE }, "\u21BB")))));
 });
 var EasyCrop$1 = React.memo(EasyCrop);
@@ -1731,9 +1724,9 @@ var ImgCrop = React.forwardRef(function (props, ref) {
                             if (result === false) {
                                 return [2 /*return*/, rejectRef.current(new Error('beforeUpload return false'))];
                             }
-                            delete newFile[AntUpload__default["default"].LIST_IGNORE];
-                            if (result === AntUpload__default["default"].LIST_IGNORE) {
-                                Object.defineProperty(newFile, AntUpload__default["default"].LIST_IGNORE, {
+                            delete newFile[antd.Upload.LIST_IGNORE];
+                            if (result === antd.Upload.LIST_IGNORE) {
+                                Object.defineProperty(newFile, antd.Upload.LIST_IGNORE, {
                                     value: true,
                                     configurable: true
                                 });
@@ -1751,11 +1744,16 @@ var ImgCrop = React.forwardRef(function (props, ref) {
     }); }, [fillColor, quality, rotate]);
     var getComponent = function (titleOfModal) { return (React__default["default"].createElement(React__default["default"].Fragment, null,
         uploadComponent,
-        image && (React__default["default"].createElement(AntModal__default["default"], __assign$1({ visible: true, wrapClassName: "".concat(PREFIX, "-modal"), title: titleOfModal, onOk: onOk, onCancel: onCancel, maskClosable: false, destroyOnClose: true }, modalProps),
+        image && (React__default["default"].createElement(antd.Modal, __assign$1({ visible: true, wrapClassName: "".concat(PREFIX, "-modal"), title: titleOfModal, onOk: onOk, onCancel: onCancel, maskClosable: false, destroyOnClose: true }, modalProps),
             React__default["default"].createElement(EasyCrop$1, { ref: easyCropRef, cropperRef: ref, image: image, aspect: aspect, shape: shape, grid: grid, zoom: zoom, rotate: rotate, minZoom: minZoom, maxZoom: maxZoom, cropperProps: cropperProps }))))); };
     if (modalTitle)
         return getComponent(modalTitle);
-    return (React__default["default"].createElement(LocaleReceiver__default["default"], null, function (locale, code) { return getComponent(code === 'zh-cn' ? '编辑图片' : 'Edit image'); }));
+    // return (
+    //   <LocaleReceiver>
+    //     {(locale, code) => getComponent(code === 'zh-cn' ? '编辑图片' : 'Edit image')}
+    //   </LocaleReceiver>
+    // );
+    return getComponent('编辑图片');
 });
 
 module.exports = ImgCrop;
