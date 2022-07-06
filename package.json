@@ -32,6 +32,9 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "antd": "^4.20.1",
     "react-easy-crop": "^4.1.5"
   },
   "devDependencies": {
@@ -39,14 +42,11 @@
     "@rollup/plugin-typescript": "^8.3.2",
     "@types/react": "^18.0.8",
     "@types/react-dom": "^18.0.0",
-    "antd": "^4.20.1",
     "eslint": "^8.14.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.6.2",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
     "rollup": "^2.70.2",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-less": "^1.1.3",
